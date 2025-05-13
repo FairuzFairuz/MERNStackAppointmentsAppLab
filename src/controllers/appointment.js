@@ -2,7 +2,7 @@ import Appointment from "../models/Appointment.js";
 
 export const getAllAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find({}, "title type dateTime");
+    const appointments = await Appointment.find({}, "title type date time");
     res.json(appointments);
   } catch (error) {
     res.status(500).json({ error: "Server error" });
@@ -12,10 +12,10 @@ export const getAllAppointments = async (req, res) => {
 export const getAppointmentById = async (req, res) => {
   try {
     const appointment = await Appointment.findById(req.params.id);
-    if (!appointment) return res.status(401).json({ error: "Not Found" });
+    if (!appointment) return res.status(404).json({ error: "Not Found" });
     res.json(appointment);
   } catch (error) {
-    res.status(400).json({ error: "Invalid IF format" });
+    res.status(400).json({ error: "Invalid ID format" });
   }
 };
 
@@ -38,7 +38,7 @@ export const updateAppointment = async (req, res) => {
     );
     if (!updatedAppointment)
       return res.status(404).json({ error: "Not Found" });
-    res.json(updateAppointment);
+    res.json(updatedAppointment);
   } catch (error) {
     res.status(400).json({ error: "Failed to update" });
   }

@@ -6,8 +6,9 @@ import appointment from "./src/routes/appointment.js";
 
 dotenv.config();
 const app = express();
-app.use(express.json);
+app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
 mongoose
   .connect(process.env.DATABASE)
@@ -17,4 +18,6 @@ mongoose
 app.use("/api/appointments", appointment);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

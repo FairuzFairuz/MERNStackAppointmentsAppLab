@@ -1,5 +1,5 @@
 import express from "express";
-import Appointment from "../models/Appointment.js";
+// import Appointment from "../models/Appointment.js";
 import {
   createAppointment,
   deleteAppointment,
