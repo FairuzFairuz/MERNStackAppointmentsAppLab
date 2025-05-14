@@ -2,7 +2,10 @@ import Appointment from "../models/Appointment.js";
 
 export const getAllAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find({}, "title type date time");
+    const appointments = await Appointment.find(
+      {},
+      "title type date time purpose company person address comments"
+    );
     res.json(appointments);
   } catch (error) {
     res.status(500).json({ error: "Server error" });
